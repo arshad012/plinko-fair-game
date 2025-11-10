@@ -4,9 +4,9 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 dotenv.config();
 
-require('./config/db')(); // connect to MongoDB
+require('../config/db.js')(); // connect to MongoDB
 
-const roundRoutes = require('./routes/roundRoutes.js');
+const roundRoutes = require('../routes/roundRoutes.js');
 
 const app = express();
 
@@ -42,7 +42,7 @@ app.get('/health', (req, res) => res.json({ ok: true }));
 app.use('/api/rounds', roundRoutes);
 
 // verification endpoint standalone
-const verifyController = require('./controllers/verifyController.js');
+const verifyController = require('../controllers/verifyController.js');
 app.get('/api/verify', verifyController.verifyQuery);
 
 module.exports = app;
